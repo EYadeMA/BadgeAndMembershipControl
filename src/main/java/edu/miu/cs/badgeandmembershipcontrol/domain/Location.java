@@ -1,9 +1,11 @@
 package edu.miu.cs.badgeandmembershipcontrol.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
@@ -23,7 +25,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
-@ToString
+@EqualsAndHashCode
 public class Location {
 
     @Id
@@ -39,15 +41,16 @@ public class Location {
 
     @Enumerated
     private LocationType locationType;
-    @JsonIgnore
-    @ManyToMany(mappedBy = "locations")
+
+    @JsonBackReference(value="plans")
+    @ManyToMany(mappedBy = "locations",fetch = FetchType.LAZY)
     private List<Plan> plans = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "location_id")
-    @ToString.Exclude
     private List<TimeSlot> timeSlots = new ArrayList<TimeSlot>();
 
+    @Transient
     public boolean checkTimeSlot(){
         LocalDateTime currentDateTime = LocalDateTime.now();
         boolean isValid = false;
@@ -61,15 +64,15 @@ public class Location {
         return isValid;
     }
 
-    @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Location location = (Location) o;
-        return name.equals(location.name) && description.equals(location.description);
-    }
-
-    @Override public int hashCode() {
-        return Objects.hash(name, description);
-    }
+//    @Override public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Location location = (Location) o;
+//        return name.equals(location.name) && description.equals(location.description) && locationType.equals(location.locationType);
+//    }
+//
+//    @Override public int hashCode() {
+//        return Objects.hash(name, description);
+//    }
 
 }

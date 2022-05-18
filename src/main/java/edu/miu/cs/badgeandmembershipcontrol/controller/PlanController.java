@@ -63,6 +63,26 @@ public class PlanController {
         return new ResponseEntity<>(newPlan, HttpStatus.OK);
     }
 
+    @PostMapping(path = "/{planId}/addLocation")
+    public ResponseEntity<?> addLocationToPlan(@PathVariable Long planId, @RequestBody Location location){
+        // make sure you send existing location with an id, you can only send location id
+        Plan plan = planService.addLocationToPlan(planId , location);
+        if(plan == null){
+            return new ResponseEntity<String>("Location already found in Plan!", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(plan, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/{planId}/removeLocation")
+    public ResponseEntity<?> removeLocationFromPlan(@PathVariable Long planId, @RequestBody Location location){
+        // make sure you send existing location with an id, you can only send location id
+        Plan plan = planService.removeLocationToPlan(planId , location);
+        if(plan == null){
+            return new ResponseEntity<String>("Location not found in Plan!", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(plan, HttpStatus.OK);
+    }
+
     @PutMapping(path = "/{planId}")
     public ResponseEntity<?> updatePlan(@PathVariable Long planId, @RequestBody Plan plan){
         Plan updatedPlan = planService.updatePlan(planId , plan);

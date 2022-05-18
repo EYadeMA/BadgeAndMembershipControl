@@ -27,4 +27,11 @@ public interface PlanRepository extends JpaRepository<Plan,Long> {
 	@Query("select m.plan from Membership m where m.id =?1")
 	Optional<Plan> findPlanByMemberShip(Long membershipId);
 
+	Optional<Plan> findPlansByIdAndLocations_Name(Long planId, String locationName);
+
+	Integer countPlansByIdAndLocations_Name(Long planId, String locationName);
+
+	Integer countPlansByIdAndLocations_Id(Long planId, Long locationId);
+
+
 }

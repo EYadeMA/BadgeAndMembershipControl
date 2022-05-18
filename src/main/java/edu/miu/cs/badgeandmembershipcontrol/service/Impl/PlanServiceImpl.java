@@ -27,13 +27,11 @@ public class PlanServiceImpl implements PlanService {
 	}
 
 	@Override public Plan getPlan(Long planId) {
-		Optional<Plan> planOptional = planRepository.findById(planId);
-		return planOptional.orElse(null);
+		return planRepository.findById(planId).orElse(null);
 	}
 
 	@Override public List<Plan> getLocationPlans(Long locationId) {
-		Optional<List<Plan>> membershipPlansOptional = planRepository.findPlansByLocation_Id(locationId);
-		return membershipPlansOptional.orElse(null);
+		return planRepository.findPlansByLocation_Id(locationId).orElse(null);
 	}
 
 	@Override
@@ -83,5 +81,28 @@ public class PlanServiceImpl implements PlanService {
 		}
 		return null;
 	}
+
+	@Override
+	public Plan addLocationToPlan(Long planId, Location location) {
+		Plan plan = getPlan(planId);
+		if(plan == null) return null;
+		if(planRepository.countPlansByIdAndLocations_Id(planId,location.getId()) > 0) return null;
+
+		plan.addLocation(location);
+		return planRepository.save(plan);
+	}
+
+	@Override
+	public Plan removeLocationToPlan(Long planId, Location location) {
+		Plan plan = getPlan(planId);
+		if(plan == null) return null;
+		if(planRepository.countPlansByIdAndLocations_Id(planId,location.getId()) == 0) return null;
+
+		plan.removeLocation(location);
+		System.out.println(plan);
+
+		return planRepository.save(plan);
+	}
+
 
 }

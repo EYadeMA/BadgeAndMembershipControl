@@ -28,5 +28,9 @@ public interface PlanService {
     List<Plan> findPlanByMember_Id(Long memberId);
 
     Plan findPlanByMemberShip(Long membershipId);
+
+    Plan addLocationToPlan(Long planId, Location location);
+
+    Plan removeLocationToPlan(Long planId, Location location);
 }
 

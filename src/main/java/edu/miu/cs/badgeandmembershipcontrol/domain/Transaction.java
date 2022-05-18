@@ -18,6 +18,9 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime accessTime = LocalDateTime.now();
+
+    @Enumerated
+    private TransactionType transactionType;
     
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="badge_id")
@@ -42,4 +45,8 @@ public class Transaction {
         return Objects.hash(accessTime, badge, transactionLoc);
     }
 
+}
+
+enum TransactionType {
+    ALLOWED, DECLINED;
 }
