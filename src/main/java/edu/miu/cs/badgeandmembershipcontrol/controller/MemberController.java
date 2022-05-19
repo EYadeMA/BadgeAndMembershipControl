@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import edu.miu.cs.badgeandmembershipcontrol.domain.Badge;
 import edu.miu.cs.badgeandmembershipcontrol.domain.Member;
 import edu.miu.cs.badgeandmembershipcontrol.domain.Membership;
+import edu.miu.cs.badgeandmembershipcontrol.domain.Plan;
 import edu.miu.cs.badgeandmembershipcontrol.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -66,6 +67,17 @@ public class MemberController {
         }
         return new ResponseEntity<Badge>(badge, HttpStatus.OK);
     }
+
+    @GetMapping(path = "{memberId}/plans")
+    public ResponseEntity<?> getMemberPlans(@PathVariable Long memberId){
+        List<Plan> planList = memberService.getPlansByMemberId(memberId);
+
+        if(planList.isEmpty()){
+            return new ResponseEntity<String>("No Plans Found!", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Plan>>(planList, HttpStatus.OK);
+    }
+
 
     @PostMapping()
     public ResponseEntity<?> createMember(@RequestBody Member member){

@@ -97,10 +97,7 @@ public class PlanServiceImpl implements PlanService {
 		Plan plan = getPlan(planId);
 		if(plan == null) return null;
 		if(planRepository.countPlansByIdAndLocations_Id(planId,location.getId()) == 0) return null;
-
 		plan.removeLocation(location);
-		System.out.println(plan);
-
 		return planRepository.save(plan);
 	}
 

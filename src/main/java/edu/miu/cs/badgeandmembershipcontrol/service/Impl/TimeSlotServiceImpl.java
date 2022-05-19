@@ -1,7 +1,6 @@
 package edu.miu.cs.badgeandmembershipcontrol.service.Impl;
 
 import com.sun.istack.NotNull;
-import edu.miu.cs.badgeandmembershipcontrol.domain.Plan;
 import edu.miu.cs.badgeandmembershipcontrol.domain.TimeSlot;
 import edu.miu.cs.badgeandmembershipcontrol.repository.TimeSlotRepository;
 import edu.miu.cs.badgeandmembershipcontrol.service.TimeSlotService;

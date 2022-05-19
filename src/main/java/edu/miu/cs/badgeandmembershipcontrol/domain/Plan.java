@@ -41,16 +41,4 @@ public class Plan {
         this.locations = this.locations.stream().filter(loc -> !loc.getId().equals(location.getId())).toList();
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Plan plan = (Plan) o;
-//        return Objects.equals(id, plan.id) && Objects.equals(name, plan.name) && Objects.equals(description, plan.description) && Objects.equals(roles, plan.roles) && Objects.equals(locations, plan.locations) && Objects.equals(counter, plan.counter);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, name, description, roles, locations, counter);
-//    }
 }

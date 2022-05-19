@@ -1,0 +1,226 @@
+{
+            "id": 1,
+            "name": "Bldg 140",
+            "description": "Male dormitory",
+            "capacity": 50,
+            "locationType": "DORMITORY",
+            "timeSlots": [
+                {
+                    "id": 1,
+                    "startTime": "2022-12-12 00:00",
+                    "endTime": "2022-12-12 23:59"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Bldg 141",
+            "description": "Male dormitory",
+            "capacity": 50,
+            "locationType": "DORMITORY",
+            "timeSlots": [
+                {
+                    "id": 2,
+                    "startTime": "2022-12-12 00:00",
+                    "endTime": "2022-12-12 23:59"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Bldg 142",
+            "description": "Male dormitory",
+            "capacity": 50,
+            "locationType": "DORMITORY",
+            "timeSlots": [
+                {
+                    "id": 3,
+                    "startTime": "2022-12-12 00:00",
+                    "endTime": "2022-12-12 23:59"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Bldg 143",
+            "description": "Male dormitory",
+            "capacity": 50,
+            "locationType": "DORMITORY",
+            "timeSlots": [
+                {
+                    "id": 4,
+                    "startTime": "2022-12-12 00:00",
+                    "endTime": "2022-12-12 23:59"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Bldg 144",
+            "description": "Male dormitory",
+            "capacity": 50,
+            "locationType": "DORMITORY",
+            "timeSlots": [
+                {
+                    "id": 5,
+                    "startTime": "2022-12-12 00:00",
+                    "endTime": "2022-12-12 23:59"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Bldg HH",
+            "description": "Female dormitory",
+            "capacity": 250,
+            "locationType": "DORMITORY",
+            "timeSlots": [
+                {
+                    "id": 6,
+                    "startTime": "2022-12-12 00:00",
+                    "endTime": "2022-12-12 23:59"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Argirio",
+            "description": "cafetaria",
+            "capacity": 400,
+            "locationType": "DINNING_HALL",
+            "timeSlots": [
+                {
+                    "id": 7,
+                    "startTime": "2022-12-12 08:30",
+                    "endTime": "2022-12-12 10:00"
+                },
+                {
+                    "id": 8,
+                    "startTime": "2022-12-12 12:00",
+                    "endTime": "2022-12-12 13:30"
+                },
+                {
+                    "id": 9,
+                    "startTime": "2022-12-12 18:00",
+                    "endTime": "2022-12-12 20:00"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Argirio new",
+            "description": "cafetaria",
+            "capacity": 400,
+            "locationType": "DINNING_HALL",
+            "timeSlots": [
+                {
+                    "id": 10,
+                    "startTime": "2022-12-12 08:30",
+                    "endTime": "2022-12-12 10:00"
+                },
+                {
+                    "id": 11,
+                    "startTime": "2022-12-12 12:00",
+                    "endTime": "2022-12-12 13:30"
+                },
+                {
+                    "id": 12,
+                    "startTime": "2022-12-12 18:00",
+                    "endTime": "2022-12-12 20:00"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Recration Center",
+            "description": "Gym",
+            "capacity": 400,
+            "locationType": "GYMNASIUM",
+            "timeSlots": [
+                {
+                    "id": 13,
+                    "startTime": "2022-12-12 10:00",
+                    "endTime": "2022-12-12 19:00"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Veril Hall",
+            "description": "classrooms Bldng",
+            "capacity": 300,
+            "locationType": "CLASSROOM",
+            "timeSlots": [
+                {
+                    "id": 14,
+                    "startTime": "2022-12-12 00:00",
+                    "endTime": "2022-12-12 23:59"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "name": "V 47",
+            "description": "classrooms on Veril Hall Bldng",
+            "capacity": 300,
+            "locationType": "CLASSROOM",
+            "timeSlots": [
+                {
+                    "id": 15,
+                    "startTime": "2022-12-12 10:00",
+                    "endTime": "2022-12-12 20:00"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "name": "V 11",
+            "description": "classrooms on Veril Hall Bldng",
+            "capacity": 40,
+            "locationType": "CLASSROOM",
+            "timeSlots": [
+                {
+                    "id": 16,
+                    "startTime": "2022-12-12 10:00",
+                    "endTime": "2022-12-12 20:00"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "name": "V 14",
+            "description": "classrooms on Veril Hall Bldng",
+            "capacity": 40,
+            "locationType": "CLASSROOM",
+            "timeSlots": [
+                {
+                    "id": 17,
+                    "startTime": "2022-12-12 10:00",
+                    "endTime": "2022-12-12 20:00"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "name": "Rec Center",
+            "description": "Gymnasium ",
+            "capacity": 400,
+            "locationType": "GYMNASIUM",
+            "timeSlots": [
+                {
+                    "id": 18,
+                    "startTime": "2022-12-12 08:30",
+                    "endTime": "2022-12-12 10:00"
+                },
+                {
+                    "id": 19,
+                    "startTime": "2022-12-12 12:00",
+                    "endTime": "2022-12-12 01:30"
+                },
+                {
+                    "id": 20,
+                    "startTime": "2022-12-12 18:00",
+                    "endTime": "2022-12-12 20:00"
+                }
+            ]
+        }

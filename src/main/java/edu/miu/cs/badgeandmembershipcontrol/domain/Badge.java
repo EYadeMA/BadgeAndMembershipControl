@@ -19,7 +19,7 @@ import java.util.Objects;
 
 @Data
 @Entity
-@ToString
+@EqualsAndHashCode
 public class Badge implements Serializable {
 
     @Id
@@ -41,25 +41,13 @@ public class Badge implements Serializable {
     private LocalDateTime modifiedOn = LocalDateTime.now();
 
     @JsonBackReference(value="member")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name="member_id")
     @ToString.Exclude
     private Member member;
 
     public void setBadgeInActive() {
         this.stateCode = "InActive";
-    }
-    @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Badge badge = (Badge) o;
-        return stateCode.equals(badge.stateCode) && expiryDate.equals(badge.expiryDate)
-                && createdOn.equals(badge.createdOn) && Objects.equals(modifiedOn, badge.modifiedOn)
-                && member.equals(badge.member);
-    }
-
-    @Override public int hashCode() {
-        return Objects.hash(stateCode, expiryDate, createdOn, modifiedOn, member);
     }
 
 }

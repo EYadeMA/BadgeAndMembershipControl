@@ -3,6 +3,7 @@ package edu.miu.cs.badgeandmembershipcontrol.service.Impl;
 import com.sun.istack.NotNull;
 import edu.miu.cs.badgeandmembershipcontrol.domain.Location;
 import edu.miu.cs.badgeandmembershipcontrol.domain.LocationType;
+import edu.miu.cs.badgeandmembershipcontrol.domain.Membership;
 import edu.miu.cs.badgeandmembershipcontrol.repository.LocationRepository;
 import edu.miu.cs.badgeandmembershipcontrol.service.LocationService;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +57,11 @@ public class LocationServiceImpl implements LocationService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Optional<Membership> findMembershipByMemberIdAndLocationId(Long memberId, Long locationId, String status) {
+        return locationRepository.findMembershipByStatusAndMemberIdAndLocationId(status,memberId,locationId);
     }
 
 }

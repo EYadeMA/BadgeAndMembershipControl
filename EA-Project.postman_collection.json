@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b6ba9aff-5cf1-401f-8509-fa4b68680897",
+		"_postman_id": "1949175f-64c5-4961-9724-3dba9b3fcc50",
 		"name": "EA-Project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -149,44 +149,6 @@
 					"response": []
 				},
 				{
-					"name": "Add membership to member",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": "JSON Type",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"startDate\" : \"2022-12-23T00:00:00\",\n    \"endDate\" : \"2022-12-25T00:00:00\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/api/v1/members/addMembership/3/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"members",
-								"addMembership",
-								"3",
-								"1"
-							]
-						},
-						"description": "using memberId and planId with startDate and endDate"
-					},
-					"response": []
-				},
-				{
 					"name": "Revoke Membership",
 					"request": {
 						"method": "POST",
@@ -307,6 +269,35 @@
 								"members",
 								"2",
 								"activeBadge"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Plans by Member Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/members/2/plans",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"members",
+								"2",
+								"plans"
 							]
 						}
 					},
@@ -549,7 +540,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Bldg HH\",\n    \"description\":\"Female dormitory\",\n    \"capacity\":200,\n    \"locationType\":\"DORMITORY\",\n    \"timeSlots\": [\n        {\n            \"startTime\": \"2022-12-12 00:00\",\n            \"endTime\": \"2022-12-12 23:59\"\n        }\n    ]\n}"
+							"raw": "{\n    \"name\":\"Argirio\",\n    \"description\":\"cafetaria\",\n    \"capacity\":400,\n    \"locationType\":\"DINNING_HALL\",\n    \"timeSlots\": [\n        {\n            \"startTime\": \"2022-12-12 08:30\",\n            \"endTime\": \"2022-12-12 10:00\"\n        },\n        {\n            \"startTime\": \"2022-12-12 12:00\",\n            \"endTime\": \"2022-12-12 13:30\"\n        },\n        {\n            \"startTime\": \"2022-12-12 18:00\",\n            \"endTime\": \"2022-12-12 20:00\"\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/v1/locations",
@@ -585,7 +576,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"id\": 1,\n        \"name\": \"recriation\",\n        \"description\": \"footballfeild \",\n        \"capacity\": 100,\n        \"locationType\": \"GYMNASIUM\",\n        \"timeSlots\": [\n            {\n                \"startTime\": \"2012-03-22 12:00\",\n                \"endTime\": \"2022-12-22 12:00\"\n            }\n        ]\n    }",
+							"raw": "    {\n        \"id\": 1,\n        \"name\": \"HH1\",\n        \"description\": \"footballfeild \",\n        \"capacity\": 100,\n        \"locationType\": \"GYMNASIUM\",\n        \"timeSlots\": [\n            {\n                \"id\":1,\n                \"startTime\": \"2012-03-22 12:00\",\n                \"endTime\": \"2022-12-22 12:00\"\n            }\n        ]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -635,91 +626,6 @@
 			"name": "Plan",
 			"item": [
 				{
-					"name": "Get Plans",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/v1/plans",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"plans"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Plan By ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/v1/plans/3",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"plans",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Locations By Plan ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/v1/plans/1/location",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"plans",
-								"1",
-								"location"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Plan By Location",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/v1/plans/location/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"plans",
-								"location",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Create Plan",
 					"request": {
 						"method": "POST",
@@ -733,7 +639,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "   {\n        \"name\": \"Cafeteria Access\",\n        \"description\": \"anyone who has this access can have a specific access to a cafeteria\",\n        \"roles\": [\"STUDENT\",\"FACULTY\",\"STAFF\"],\n        \"location\": {\n            \"name\":\"Argiro\",\n            \"description\":\"Cafeteria\",\n            \"capacity\":400,\n            \"locationType\":\"DINNING_HALL\",\n            \"timeSlots\": [\n                {\n                    \"startTime\": \"2022-12-12 08:30\",\n                    \"endTime\": \"2022-12-12 10:00\"\n                },\n                {\n                    \"startTime\": \"2022-12-12 12:00\",\n                    \"endTime\": \"2022-12-12 01:30\"\n                },\n                {\n                    \"startTime\": \"2022-12-12 18:00\",\n                    \"endTime\": \"2022-12-12 20:00\"\n                }\n            ]\n        }\n    }"
+							"raw": "   {\n        \"name\": \"Cafeteria Access\",\n        \"description\": \"anyone who has this access can have a specific access to a cafeteria\",\n        \"roles\": [\"STUDENT\",\"FACULTY\",\"STAFF\"],\n        \"locations\": [\n                \n        ]\n    }"
 						},
 						"url": {
 							"raw": "localhost:8080/api/v1/plans",
@@ -832,12 +738,41 @@
 					"response": []
 				},
 				{
-					"name": "Get Plan By Location",
+					"name": "Get Plans",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/plans/location/1",
+							"raw": "localhost:8080/api/v1/plans",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"plans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Location to Plan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n                \"id\": 20,\n                \"name\": \"Argirio\",\n                \"description\": \"cafetaria\",\n                \"capacity\": 400,\n                \"locationType\": \"DINNING_HALL\",\n                \"timeSlots\": [\n                    {\n                        \"startTime\": \"2022-12-12 08:30\",\n                        \"endTime\": \"2022-12-12 10:00\"\n                    },\n                    {\n                        \"startTime\": \"2022-12-12 12:00\",\n                        \"endTime\": \"2022-12-12 13:30\"\n                    },\n                    {\n                        \"startTime\": \"2022-12-12 18:00\",\n                        \"endTime\": \"2022-12-12 20:00\"\n                    }\n                ]\n            }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/plans/15/addLocation",
 							"host": [
 								"localhost"
 							],
@@ -846,8 +781,40 @@
 								"api",
 								"v1",
 								"plans",
-								"location",
-								"1"
+								"15",
+								"addLocation"
+							]
+						},
+						"description": "make sure you add existing location with an id, you can only send location id"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Location from Plan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n                \"id\": 20,\n                \"name\": \"Argirio\",\n                \"description\": \"cafetaria\",\n                \"capacity\": 400,\n                \"locationType\": \"DINNING_HALL\",\n                \"timeSlots\": [\n                    {\n                        \"startTime\": \"2022-12-12 08:30\",\n                        \"endTime\": \"2022-12-12 10:00\"\n                    },\n                    {\n                        \"startTime\": \"2022-12-12 12:00\",\n                        \"endTime\": \"2022-12-12 13:30\"\n                    },\n                    {\n                        \"startTime\": \"2022-12-12 18:00\",\n                        \"endTime\": \"2022-12-12 20:00\"\n                    }\n                ]\n            }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/plans/15/removeLocation",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"plans",
+								"15",
+								"removeLocation"
 							]
 						}
 					},
@@ -932,6 +899,72 @@
 								"v1",
 								"transactions",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction By Member ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions/member/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"member",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction By Badge ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions/badge/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"badge",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction By Plan ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/transactions/plan/12",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"plan",
+								"12"
 							]
 						}
 					},
@@ -1101,7 +1134,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/api/v1/memberships/checkAccess?memberId=2&locationId=14&locationType=DORMITORY",
+							"raw": "localhost:8080/api/v1/memberships/checkAccess?memberId=2&locationId=21&locationType=DORMITORY",
 							"host": [
 								"localhost"
 							],
@@ -1119,7 +1152,7 @@
 								},
 								{
 									"key": "locationId",
-									"value": "14"
+									"value": "21"
 								},
 								{
 									"key": "locationType",
@@ -1132,7 +1165,8 @@
 					"response": []
 				}
 			]
-		},{
+		},
+		{
 			"name": "TimeSlot",
 			"item": [
 				{

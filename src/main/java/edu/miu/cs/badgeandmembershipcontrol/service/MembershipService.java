@@ -34,6 +34,5 @@ public interface MembershipService {
 
     List<Membership> getMembershipsByMemberId(Long memberId);
 
-    Optional<Membership> getMembershipByMemberIdAndLocationIdAndStatus(Long memberId, Long locationId, String status, LocationType locationType);
-
+    public Optional<Membership> findMembershipByMemberIdAndLocationIdAndStatus(Long memberId, Long locationId, String status, LocationType locationType);
 }

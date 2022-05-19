@@ -6,6 +6,7 @@ import edu.miu.cs.badgeandmembershipcontrol.repository.MembershipRepository;
 import edu.miu.cs.badgeandmembershipcontrol.service.MemberService;
 import edu.miu.cs.badgeandmembershipcontrol.service.MembershipService;
 import edu.miu.cs.badgeandmembershipcontrol.service.PlanService;
+import edu.miu.cs.badgeandmembershipcontrol.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -15,19 +16,29 @@ import java.util.Optional;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class MembershipServiceImpl implements MembershipService {
 
     @NotNull private final MembershipRepository membershipRepository;
 
-    @Lazy
+
     @NotNull private final PlanService planService;
 
-    @Lazy
+
     @NotNull private final MemberService memberService;
 
-
     @NotNull private final LocationServiceImpl locationService;
+
+
+    @NotNull private final TransactionService transactionService;
+
+    MembershipServiceImpl(MembershipRepository membershipRepository, PlanService planService, MemberService memberService,LocationServiceImpl locationService,@Lazy TransactionService transactionService){
+        this.membershipRepository = membershipRepository;
+        this.planService = planService;
+        this.memberService = memberService;
+        this.locationService = locationService;
+        this.transactionService = transactionService;
+    }
 
     @Override public List<Membership> getMemberMemberships(Long memberId) {
         return membershipRepository.findMembershipByMember_Id(memberId).orElse(null);
@@ -91,9 +102,29 @@ public class MembershipServiceImpl implements MembershipService {
 
     @Override
     public boolean checkAccess(Long memberId, Long locationId,LocationType locationType) {
-        Optional<Membership> optionalMembership = getMembershipByMemberIdAndLocationIdAndStatus(memberId,locationId,"Active",locationType);
-        if(optionalMembership.isPresent()) return validateLocationTimeSlot(locationId);
-        return false;
+        boolean checkMembership = false;
+        TransactionType transactionType  = TransactionType.DECLINED;
+
+        Transaction transaction = new Transaction();
+        Location location = new Location();
+        location.setId(locationId);
+        transaction.setTransactionLoc(location);
+        Badge badge = memberService.getActiveBadgeByMember(memberId);
+        transaction.setBadge(badge);
+
+        Optional<Membership> optionalMembership = findMembershipByMemberIdAndLocationIdAndStatus(memberId,locationId,"Active",locationType);
+
+        if(optionalMembership.isPresent()){
+            transaction.setMembership(optionalMembership.get());
+            if(validateLocationTimeSlot(locationId)){
+                checkMembership = true;
+                transactionType = TransactionType.ALLOWED;
+            }
+        }
+        transaction.setTransactionType(transactionType);
+
+        transactionService.createTransaction(transaction);
+        return checkMembership;
     }
 
     @Override
@@ -102,9 +133,8 @@ public class MembershipServiceImpl implements MembershipService {
     }
 
     @Override
-    public Optional<Membership> getMembershipByMemberIdAndLocationIdAndStatus(Long memberId, Long locationId, String status, LocationType locationType) {
-       // return membershipRepository.findMembershipByPlan_Location_IdAndMember_IdAndMembershipStatusAndPlan_Location_LocationType(locationId,memberId,status,locationType);
-        return null;
+    public Optional<Membership> findMembershipByMemberIdAndLocationIdAndStatus(Long memberId, Long locationId, String status, LocationType locationType) {
+        return locationService.findMembershipByMemberIdAndLocationId(memberId,locationId,"Active");
     }
 
     private boolean validateLocationTimeSlot(Long locationId){

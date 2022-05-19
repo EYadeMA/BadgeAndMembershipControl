@@ -6,6 +6,7 @@ import edu.miu.cs.badgeandmembershipcontrol.repository.MemberRepository;
 import edu.miu.cs.badgeandmembershipcontrol.service.BadgeService;
 import edu.miu.cs.badgeandmembershipcontrol.service.MemberService;
 import edu.miu.cs.badgeandmembershipcontrol.service.MembershipService;
+import edu.miu.cs.badgeandmembershipcontrol.service.PlanService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,11 +25,14 @@ public class MemberServiceImpl implements MemberService {
 
     @NotNull private final MembershipService membershipService;
 
+    @NotNull private final PlanService planService;
+
     // Resolved Circular application context form a cycle
-    MemberServiceImpl(@Lazy MembershipService membershipService, BadgeService badgeService, MemberRepository memberRepository){
+    MemberServiceImpl(@Lazy MembershipService membershipService, BadgeService badgeService, MemberRepository memberRepository,PlanService planService){
         this.membershipService = membershipService;
         this.badgeService = badgeService;
         this.memberRepository = memberRepository;
+        this.planService = planService;
     }
 
 
@@ -101,6 +105,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Badge getActiveBadgeByMember(Long memberId) {
         return badgeService.getActiveBadgeByMemberId(memberId);
+    }
+
+    @Override
+    public List<Plan> getPlansByMemberId(Long memberId) {
+        return planService.findPlanByMember_Id(memberId);
     }
 
 

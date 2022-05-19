@@ -13,23 +13,17 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PlanRepository extends JpaRepository<Plan,Long> {
-	@Query("select p from Plan p join p.locations l on l.id=?1")
+	@Query("select p from Plan p join p.locations l on l.id =:locationId")
 	Optional<List<Plan>> findPlansByLocation_Id(Long locationId);
 
-	@Query("select p.locations from Plan p where p.id =?1")
+	@Query("select p.locations from Plan p where p.id =:planId")
 	Optional<List<Location>> findLocationsByPlan_Id(Long planId);
 
-	Optional<Plan> findPlansById(Long planId);
-
-	@Query("select m.plan from Membership m join Member a where m.member = ?1")
+	@Query("select mm.plan from Membership mm join mm.member m where m.id =:memberId")
 	Optional<List<Plan>> findPlanByMember_Id(Long memberId);
 
-	@Query("select m.plan from Membership m where m.id =?1")
+	@Query("select m.plan from Membership m where m.id =:membershipId")
 	Optional<Plan> findPlanByMemberShip(Long membershipId);
-
-	Optional<Plan> findPlansByIdAndLocations_Name(Long planId, String locationName);
-
-	Integer countPlansByIdAndLocations_Name(Long planId, String locationName);
 
 	Integer countPlansByIdAndLocations_Id(Long planId, Long locationId);
 

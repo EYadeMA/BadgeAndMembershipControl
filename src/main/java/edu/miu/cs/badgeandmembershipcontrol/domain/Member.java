@@ -37,7 +37,7 @@ public class Member {
     private String emailAddress;
 
     @ToString.Include
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Role.class)
     private Collection<Role> roles;
 
 //    @JsonBackReference(value="badges")

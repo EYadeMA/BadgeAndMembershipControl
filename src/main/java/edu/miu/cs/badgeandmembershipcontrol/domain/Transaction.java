@@ -19,7 +19,7 @@ public class Transaction {
     private Long id;
     private LocalDateTime accessTime = LocalDateTime.now();
 
-    @Enumerated
+    @Enumerated(EnumType.ORDINAL)
     private TransactionType transactionType;
     
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -45,8 +45,4 @@ public class Transaction {
         return Objects.hash(accessTime, badge, transactionLoc);
     }
 
-}
-
-enum TransactionType {
-    ALLOWED, DECLINED;
 }

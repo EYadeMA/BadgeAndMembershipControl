@@ -6,12 +6,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -42,9 +40,6 @@ public class Location {
     @Enumerated
     private LocationType locationType;
 
-    @JsonBackReference(value="plans")
-    @ManyToMany(mappedBy = "locations",fetch = FetchType.LAZY)
-    private List<Plan> plans = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "location_id")
@@ -63,16 +58,5 @@ public class Location {
         }
         return isValid;
     }
-
-//    @Override public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Location location = (Location) o;
-//        return name.equals(location.name) && description.equals(location.description) && locationType.equals(location.locationType);
-//    }
-//
-//    @Override public int hashCode() {
-//        return Objects.hash(name, description);
-//    }
 
 }

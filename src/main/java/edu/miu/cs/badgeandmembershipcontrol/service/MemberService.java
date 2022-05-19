@@ -3,6 +3,7 @@ package edu.miu.cs.badgeandmembershipcontrol.service;
 import edu.miu.cs.badgeandmembershipcontrol.domain.Badge;
 import edu.miu.cs.badgeandmembershipcontrol.domain.Member;
 import edu.miu.cs.badgeandmembershipcontrol.domain.Membership;
+import edu.miu.cs.badgeandmembershipcontrol.domain.Plan;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -28,6 +29,6 @@ public interface MemberService {
     List<Badge> getBadgesByMember(Long memberId);
     Badge getActiveBadgeByMember(Long memberId);
 
-
+    List<Plan> getPlansByMemberId(Long memberId);
 
 }
