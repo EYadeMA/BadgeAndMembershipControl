@@ -1,10 +1,8 @@
 package edu.miu.cs.badgeandmembershipcontrol.domain;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.*;
 
 @Data
@@ -16,7 +14,7 @@ public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank
     private String name;
     private String description;
 

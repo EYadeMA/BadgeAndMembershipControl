@@ -57,7 +57,7 @@ public class MembershipServiceImpl implements MembershipService {
     @Override public Membership createMemberShip(Membership membership) {
         Member member = memberService.getMember(membership.getMember().getId());
         Plan plan = planService.getPlan(membership.getPlan().getId());
-        Optional<List<Membership>> optionalMemberships = getMembershipsByMemberIdAndPlanId(member.getId(),plan.getId(),"Active");
+        Optional<List<Membership>> optionalMemberships = getMembershipsByMemberIdAndPlanId(member.getId(), plan.getId(),"Active");
         if(optionalMemberships.get().size() > 0) return null;
         membership.setMember(member);
         membership.setPlan(plan);

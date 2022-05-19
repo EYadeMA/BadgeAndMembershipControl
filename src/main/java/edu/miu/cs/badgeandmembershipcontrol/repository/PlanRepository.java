@@ -27,5 +27,6 @@ public interface PlanRepository extends JpaRepository<Plan,Long> {
 
 	Integer countPlansByIdAndLocations_Id(Long planId, Long locationId);
 
+	Optional<Plan> findPlanByName(String name);
 
 }

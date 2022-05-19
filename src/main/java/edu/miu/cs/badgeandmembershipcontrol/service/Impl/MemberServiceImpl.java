@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @Service
 @Transactional
-//@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
     @NotNull private final MemberRepository memberRepository;
@@ -35,7 +34,6 @@ public class MemberServiceImpl implements MemberService {
         this.planService = planService;
     }
 
-
     @Override public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
@@ -45,11 +43,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override public Member createMember(Member member) {
-        // if the Member already exists do not take it!
         Optional<Member> optionalMember = memberRepository.getMemberByFirstNameAndLastName(member.getFirstName(), member.getLastName());
-        if(!optionalMember.isEmpty())
+        if(optionalMember.isPresent())
             return null;
-
         Member member1 = memberRepository.save(member);
         // Creates Badge with the member ID and returns the badge
         Badge badge = badgeService.createBadge(member1);
@@ -60,9 +56,8 @@ public class MemberServiceImpl implements MemberService {
     @Override public Member updateMember(Long memberId, Member member) {
         member.setId(memberId);
         Optional<Member> memberOptional = memberRepository.findById(memberId);
-        if(memberOptional.isPresent()){
+        if(memberOptional.isPresent())
             return memberRepository.save(member);
-        }
         return null;
     }
 
@@ -85,25 +80,33 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
-    @Override
-    public Member deActivateMembership(Long memberId, Long membershipId) {
+    @Override public Member deActivateMembership(Long memberId, Long membershipId) {
         membershipService.deActivateMembership(membershipId,memberId);
-        Member member = memberRepository.getById(memberId);
-        return member;
+        return memberRepository.getById(memberId);
+    }
+
+    @Override public List<Membership> getMembershipsByMemberId(Long checkerId, Long memberId) {
+        List<Membership> memberships = membershipService.getMembershipsByMemberId(memberId);
+        if(memberships.isEmpty()) return null;
+        System.out.println("memberships = " + memberships);
+        List<Membership> checkerMembershipsWithCheckerId =
+                memberships .stream().filter(each -> each.getMembershipType().equals(MembershipType.CHECKER)
+                        && each.getMembershipStatus().equals("Active")).toList();
+        if(checkerMembershipsWithCheckerId.isEmpty()) return memberships;
+        System.out.println("checkerMembershipsWithCheckerId = " + checkerMembershipsWithCheckerId);
+        return checkerMembershipsWithCheckerId;
     }
 
     @Override
-    public List<Membership> getMembershipsByMemberId(Long memberId) {
+    public List<Membership> getMembershipsByMemberIdWithOut(Long memberId) {
         return membershipService.getMembershipsByMemberId(memberId);
     }
 
-    @Override
-    public List<Badge> getBadgesByMember(Long memberId) {
+    @Override public List<Badge> getBadgesByMember(Long memberId) {
         return badgeService.getBadgesByMemberId(memberId);
     }
 
-    @Override
-    public Badge getActiveBadgeByMember(Long memberId) {
+    @Override public Badge getActiveBadgeByMember(Long memberId) {
         return badgeService.getActiveBadgeByMemberId(memberId);
     }
 

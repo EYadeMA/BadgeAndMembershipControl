@@ -23,6 +23,8 @@ public class Membership implements Serializable {
 
     private String membershipStatus = "Active";
 
+    private Long counter;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm", iso = DateTimeFormat.ISO.DATE_TIME)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime startDate;
@@ -31,6 +33,9 @@ public class Membership implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime endDate;
 
+
+    @Enumerated(EnumType.ORDINAL)
+    private MembershipType membershipType;
 
 
     @ManyToOne(cascade = CascadeType.PERSIST)
